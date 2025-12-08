@@ -30,23 +30,6 @@ export const useGameSounds = (props?: UseGameSoundsProps) => {
 
   const lastScrollTimeRef = useRef(0);
 
-  useEffect(() => {
-    const scroll = createPlayer("/sounds/scroll.mp3");
-    const win = createPlayer("/sounds/win.mp3");
-    const move = createPlayer("/sounds/move.mp3");
-
-    scrollRef.current = scroll;
-    winRef.current = win;
-    moveRef.current = move;
-
-    return () => {
-      [scroll, win, move].forEach((audio) => {
-        audio.pause();
-        audio.currentTime = 0;
-      });
-    };
-  }, []);
-
   const playScroll = () => {
     const now = Date.now();
     if (now - lastScrollTimeRef.current < 80) return;
@@ -73,6 +56,23 @@ export const useGameSounds = (props?: UseGameSoundsProps) => {
   const onBounceEnd = () => {
     setIsBouncing(false);
   };
+
+  useEffect(() => {
+    const scroll = createPlayer("/sounds/scroll.mp3");
+    const win = createPlayer("/sounds/win.mp3");
+    const move = createPlayer("/sounds/move.mp3");
+
+    scrollRef.current = scroll;
+    winRef.current = win;
+    moveRef.current = move;
+
+    return () => {
+      [scroll, win, move].forEach((audio) => {
+        audio.pause();
+        audio.currentTime = 0;
+      });
+    };
+  }, []);
 
   return { playScroll, onMoveEnd, onMoveStart, onBounceEnd, isBouncing };
 };

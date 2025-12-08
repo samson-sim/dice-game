@@ -64,7 +64,7 @@ const theme = createTheme({
         root: ({ theme }) => ({
           height: 30,
           [theme.breakpoints.down("md")]: {
-            height: 12,
+            height: 8,
           },
         }),
         rail: {

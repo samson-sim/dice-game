@@ -10,16 +10,16 @@ interface BetHistoryProps {
 }
 
 export const BetHistory: FC<BetHistoryProps> = ({ items, maxVisible = 25 }) => {
-  const sliced = items.slice(0, maxVisible);
+  const sliced = [...items].reverse().slice(0, maxVisible);
 
   return (
     <Box
       sx={{
         display: "flex",
-        gap: 1.5,
         justifyContent: "flex-end",
+        gap: 1.5,
         overflow: "hidden",
-        minHeight: 36,
+        minHeight: { xs: 30, md: 36 },
       }}
     >
       {sliced.map(({ id, win, rolled }) => (
@@ -28,7 +28,7 @@ export const BetHistory: FC<BetHistoryProps> = ({ items, maxVisible = 25 }) => {
           sx={{
             flex: "0 0 auto",
             minWidth: 72,
-            height: 36,
+            height: { xs: 30, md: 36 },
             borderRadius: 1.5,
             bgcolor: win ? "success.main" : "background.paper",
             display: "flex",

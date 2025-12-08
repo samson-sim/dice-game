@@ -30,12 +30,6 @@ export const NumberField: FC<NumberFieldProps> = ({
   const [inputValue, setInputValue] = useState(String(value));
   const [isFocused, setIsFocused] = useState(false);
 
-  useEffect(() => {
-    if (!isFocused) {
-      setInputValue(String(value));
-    }
-  }, [value, isFocused]);
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
@@ -60,8 +54,14 @@ export const NumberField: FC<NumberFieldProps> = ({
 
   const handleFocus = () => setIsFocused(true);
 
+  useEffect(() => {
+    if (!isFocused) {
+      setInputValue(String(value));
+    }
+  }, [value, isFocused]);
+
   return (
-    <Box>
+    <Box width="100%">
       {label && (
         <InputLabel htmlFor={id} sx={{ mb: 1 }}>
           {label}

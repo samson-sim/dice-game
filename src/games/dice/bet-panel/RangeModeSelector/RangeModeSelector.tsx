@@ -35,14 +35,14 @@ export const RangeModeSelector: FC<RangeModeSelectorProps> = ({
         {rangeModes.map((m) => (
           <Button
             key={m}
-            variant={m === mode ? "outlined" : "text"}
+            variant="outlined"
             size="small"
             onClick={() => onChange(m)}
             sx={{
               flex: 1,
               borderRadius: 1.5,
-              borderColor: m === mode ? "#27df8a" : "transparent",
-              bgcolor: "#363c3f",
+              borderColor: m === mode ? "primary.main" : "transparent",
+              bgcolor: "background.default",
             }}
           >
             {getRangeIcon(m)}

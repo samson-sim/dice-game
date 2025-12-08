@@ -18,11 +18,10 @@ export const GameBoard = () => {
         width: "100%",
         flex: 1,
         minWidth: 0,
-        minHeight: { xs: 450, md: 600 },
-        py: 2,
+        minHeight: { xs: 360, md: 600 },
         display: "flex",
         flexDirection: "column",
-        gap: 3,
+        gap: { xs: 2, md: 3 },
       }}
     >
       <BetHistory items={history} />
@@ -30,7 +29,7 @@ export const GameBoard = () => {
         sx={{
           flexGrow: 1,
           display: "flex",
-          alignItems: "center",
+          alignItems: { xs: "end", md: "center" },
           justifyContent: "center",
         }}
       >

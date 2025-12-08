@@ -13,12 +13,12 @@ export default function DicePage() {
         alignItems: "center",
       }}
     >
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Box
           sx={{
             display: "flex",
             flexDirection: { xs: "column-reverse", md: "row" },
-            gap: { xs: 2, sm: 3, md: 4 },
+            gap: { xs: 1, md: 3 },
           }}
         >
           <BetPanel />

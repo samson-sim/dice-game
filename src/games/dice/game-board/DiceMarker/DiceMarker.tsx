@@ -36,8 +36,8 @@ export const DiceMarker: FC<DiceMarkerProps> = ({
         bottom: "100%",
         left: `${left}%`,
         transform: "translateX(-50%) translateY(-10px)",
-        height: { xs: 75, md: 90 },
-        width: { xs: 75, md: 90 },
+        height: { xs: 60, md: 90 },
+        width: { xs: 60, md: 90 },
         transition: "left 260ms ease-out",
       }}
       onTransitionStart={onMoveStart}
@@ -66,12 +66,14 @@ export const DiceMarker: FC<DiceMarkerProps> = ({
         />
 
         <Typography
-          variant="h5"
+          variant="body1"
           sx={{
             position: "absolute",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
+            fontWeight: 700,
+            fontSize: { xs: 16, md: 24 },
             color:
               isWin === null
                 ? "#000"

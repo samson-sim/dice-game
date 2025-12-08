@@ -2,9 +2,9 @@
 
 import { FC } from "react";
 import { Button, Paper } from "@mui/material";
+import { useDiceStore } from "@/src/store/dice/diceStore";
 import { BetInput } from "../BetInput";
 import { RangeModeSelector } from "../RangeModeSelector";
-import { useDiceStore } from "@/src/store/dice/diceStore";
 import {
   bigQuickAmounts,
   littleQuickAmounts,
@@ -15,7 +15,7 @@ import {
 export const BetPanel: FC = () => {
   const {
     currentBet,
-    range,
+    range: { mode },
     balance,
     payout,
     setBetAmount,
@@ -40,7 +40,7 @@ export const BetPanel: FC = () => {
         p: { xs: 2, sm: 2.5 },
         display: "flex",
         flexDirection: "column",
-        gap: 3,
+        gap: { xs: 2, md: 3 },
         borderRadius: 2,
         maxWidth: { xs: "none", md: 360 },
       }}
@@ -57,8 +57,8 @@ export const BetPanel: FC = () => {
         error={error}
       />
       <BetInput label="Сума виграшу" id="dice-payout" value={payout} disabled />
-      <RangeModeSelector mode={range.mode} onChange={setRangeMode} />
-      <Button variant="contained" fullWidth onClick={roll} disabled={isRolling}>
+      <RangeModeSelector mode={mode} onChange={setRangeMode} />
+      <Button variant="contained" onClick={roll} disabled={isRolling} fullWidth>
         Ставка
       </Button>
     </Paper>

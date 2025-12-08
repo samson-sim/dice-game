@@ -13,6 +13,17 @@ import {
 import type { RangeState, DiceState } from "@/src/games/dice/types";
 import type { DiceStore } from "./DiceStore.types";
 
+const applyStateRecalc = (state: DiceState) => {
+  const { chance, payout, multiplier } = recalcForRange(
+    state.currentBet,
+    state.range
+  );
+
+  state.chance = chance;
+  state.multiplier = multiplier;
+  state.payout = payout;
+};
+
 const defaultRange: RangeState = {
   mode: "below",
   inside: [0, 50],
@@ -40,28 +51,14 @@ export const useDiceStore = create<DiceStore>()(
 
         state.currentBet = Number(bet.toFixed(3));
 
-        const { chance, payout, multiplier } = recalcForRange(
-          state.currentBet,
-          state.range
-        );
-
-        state.chance = chance;
-        state.multiplier = multiplier;
-        state.payout = payout;
+        applyStateRecalc(state);
       }),
 
     setRange: (range) =>
       set((state) => {
         state.range = range;
 
-        const { chance, payout, multiplier } = recalcForRange(
-          state.currentBet,
-          state.range
-        );
-
-        state.chance = chance;
-        state.multiplier = multiplier;
-        state.payout = payout;
+        applyStateRecalc(state);
       }),
 
     setRangeMode: (mode) =>
@@ -107,14 +104,7 @@ export const useDiceStore = create<DiceStore>()(
 
         state.range = newRange;
 
-        const { chance, payout, multiplier } = recalcForRange(
-          state.currentBet,
-          state.range
-        );
-
-        state.chance = chance;
-        state.multiplier = multiplier;
-        state.payout = payout;
+        applyStateRecalc(state);
       }),
 
     setBalance: (balance: number) =>
@@ -144,14 +134,7 @@ export const useDiceStore = create<DiceStore>()(
 
         state.currentBet = clamp(bet, 0, state.balance);
 
-        const { chance, payout, multiplier } = recalcForRange(
-          state.currentBet,
-          state.range
-        );
-
-        state.chance = chance;
-        state.multiplier = multiplier;
-        state.payout = payout;
+        applyStateRecalc(state);
       }),
 
     setMultiplier: (newMultiplier) =>
@@ -160,30 +143,16 @@ export const useDiceStore = create<DiceStore>()(
 
         const nextRange = getNextRange(state.range, chancePercent);
 
-        const { chance, multiplier, payout } = recalcForRange(
-          state.currentBet,
-          nextRange
-        );
-
         state.range = nextRange;
-        state.chance = chance;
-        state.multiplier = multiplier;
-        state.payout = payout;
+        applyStateRecalc(state);
       }),
 
     setChance: (newChance) =>
       set((state) => {
         const nextRange = getNextRange(state.range, newChance);
 
-        const { chance, multiplier, payout } = recalcForRange(
-          state.currentBet,
-          nextRange
-        );
-
         state.range = nextRange;
-        state.chance = chance;
-        state.multiplier = multiplier;
-        state.payout = payout;
+        applyStateRecalc(state);
       }),
 
     clearError: () =>

@@ -115,7 +115,7 @@ export const RangeSliderView: FC<RangeSliderViewProps> = ({
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          mt: 2,
+          mt: { xs: 1, md: 2 },
           px: 4,
         }}
       >

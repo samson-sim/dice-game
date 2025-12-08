@@ -6,6 +6,12 @@ import { useDiceStore } from "@/src/store/dice/diceStore";
 import { NumberField } from "../../NumberField";
 import { MAX_CHANCE, MIN_CHANCE } from "../../constants";
 
+const EndAdornment = ({ label }: { label: string }) => (
+  <InputAdornment position="end">
+    <Typography sx={{ fontWeight: 700, color: "#fff" }}>{label}</Typography>
+  </InputAdornment>
+);
+
 export const DiceStats = () => {
   const { multiplier, chance, setMultiplier, setChance } = useDiceStore();
 
@@ -17,6 +23,7 @@ export const DiceStats = () => {
           justifyContent: "center",
           alignItems: "center",
           gap: 2,
+          width: "100%",
           padding: 2,
           backgroundColor: "background.paper",
           borderRadius: 2,
@@ -31,13 +38,7 @@ export const DiceStats = () => {
           value={multiplier}
           slotProps={{
             input: {
-              endAdornment: (
-                <InputAdornment position="end">
-                  <Typography sx={{ fontWeight: 700, color: "#fff" }}>
-                    ×
-                  </Typography>
-                </InputAdornment>
-              ),
+              endAdornment: <EndAdornment label="x" />,
             },
           }}
         />
@@ -50,13 +51,7 @@ export const DiceStats = () => {
           value={chance}
           slotProps={{
             input: {
-              endAdornment: (
-                <InputAdornment position="end">
-                  <Typography sx={{ fontWeight: 700, color: "#fff" }}>
-                    %
-                  </Typography>
-                </InputAdornment>
-              ),
+              endAdornment: <EndAdornment label="%" />,
             },
           }}
         />

@@ -1,1 +1,1 @@
-[DEMO LINK](https://dice-test.netlify.app/)
+[DEMO LINK](https://dice-test-task.netlify.app/)
